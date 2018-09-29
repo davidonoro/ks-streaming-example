@@ -1,0 +1,1 @@
+Example of pipeline with Kafka Streams showing most interesting features like windowing ,kv stores and low level processor API
