@@ -92,7 +92,6 @@ public class MetricsTransformer implements Transformer<String,RawMetric,KeyValue
        }
     }
 
-    @Override
     public KeyValue<String, NormalizedMetric> punctuate(long l) {
         return null;
     }

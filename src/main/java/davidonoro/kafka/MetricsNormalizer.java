@@ -106,7 +106,6 @@ public class MetricsNormalizer {
      */
     private KStream<String,RawMetric> groupMetrics(KStream<String,RawMetric> metricStream) {
         Serde<RawMetric> rawMetricSerde = SerdeFactory.createSerde(RawMetric.class);
-
         KTable<Windowed<String>, RawMetric> groupedMetrics = metricStream.groupBy((key,metric)->metric.getIdContainer()+"-"+metric.getTimestamp(),
                 Serialized.with(Serdes.String(),rawMetricSerde)).windowedBy(TimeWindows.of(TimeUnit.SECONDS.toMillis(windosSizeSeconds))).aggregate(
                 ()-> new RawMetric(),
@@ -115,6 +114,7 @@ public class MetricsNormalizer {
                     return aggMetric;
                 },
                 Materialized.<String,RawMetric,WindowStore<Bytes,byte[]>>as("GROUPING.WINDOW").withKeySerde(Serdes.String()).withValueSerde(rawMetricSerde)
+
         );
 
 
