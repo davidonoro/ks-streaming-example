@@ -22,7 +22,7 @@ public class CustomStreamBuilder {
      * Topology builder with pur custom logic
      */
     @Autowired
-    private MetricsNormalizer topologyBuilder;
+    private SimpleTopology topologyBuilder;
 
     /**
      * Object which performs the continuous computation
